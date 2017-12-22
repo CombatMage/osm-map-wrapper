@@ -59,7 +59,7 @@ repositories {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     implementation "com.android.support:appcompat-v7:26.1.0"
@@ -75,6 +75,13 @@ dependencies {
     implementation 'net.sf.kxml:kxml2:2.3.0'
     implementation 'org.mapsforge:mapsforge-map-android:0.9.0'
     implementation 'com.caverock:androidsvg:1.2.2-beta-1'
+
+    //Testing
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.mockito:mockito-core:2.8.47'
+    testCompile 'org.robolectric:robolectric:3.5.1'
+    testCompile 'org.robolectric:shadows-multidex:3.5.1'
+    testCompile 'org.robolectric:shadows-support-v4:3.3.2'
 }
 
 apply plugin: 'com.github.dcendents.android-maven'
