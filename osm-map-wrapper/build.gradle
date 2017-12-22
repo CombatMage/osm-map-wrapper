@@ -20,9 +20,9 @@ ext {
     siteUrl = 'https://github.com/CombatMage/osm-map-wrapper'
     gitUrl = 'https://github.com/CombatMage/osm-map-wrapper.git'
 
-    libraryVersion = '0.1.0'
+    libraryVersion = '0.2.0'
 
-    developerId = 'CombatMage'
+    developerId = 'combatmage'
     developerName = 'Eric Neidhardt'
     developerEmail = 'eric.neidhardt@gmail.com'
 
