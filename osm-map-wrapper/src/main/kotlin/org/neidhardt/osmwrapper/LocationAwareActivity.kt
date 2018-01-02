@@ -11,6 +11,7 @@ import com.google.android.gms.location.*
  * Created by neid_ei (eric.neidhardt@dlr.de)
  * on 21.12.2017.
  */
+@Suppress("unused")
 abstract class LocationAwareActivity : AppCompatActivity() {
 
 	private val logTag = javaClass.simpleName
@@ -18,7 +19,7 @@ abstract class LocationAwareActivity : AppCompatActivity() {
 	private lateinit var googleApiClient: FusedLocationProviderClient
 	private lateinit var locationUpdateCallback: LocationCallback
 
-	private val locationRequest = LocationRequest().apply {
+	private var locationRequest = LocationRequest().apply {
 		this.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
 	}
 
@@ -38,7 +39,16 @@ abstract class LocationAwareActivity : AppCompatActivity() {
 		}
 	}
 
-	protected fun requestLastKnowLocationAsync(onSuccess: (Location) -> Unit) {
+	/**
+	 * requestLastKnowLocationAsync uses google's [FusedLocationProviderClient] to retrieve
+	 * the last known location. The callback is invoked with the received location.
+	 * Note that this location may be null.
+	 * The callback's invocation is tied to the activity lifecycle, therefore checking onPause is
+	 * not required.
+	 *
+	 * @param onSuccess callback to be invoked with received location
+	 */
+	protected fun requestLastKnowLocationAsync(onSuccess: (Location?) -> Unit) {
 		try {
 			this.googleApiClient.lastLocation.addOnCompleteListener(this, { task ->
 				if (task.isSuccessful) {
